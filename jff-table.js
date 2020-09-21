@@ -8,7 +8,6 @@ const cells = new Array(2000).fill(null)
         return { value, formattedValue: value }
     }))
 
-const input = document.getElementById('input')
 const canvas = new Canvas('canvas', 'auto')
 const tableView = new TableView(canvas.rootview.frame, DataModel.spreadsheet(columns, cells))
 
