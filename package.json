@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/278204/278204.github.io#readme",
   "dependencies": {
-    "jff-table": "0.0.1"
+    "jff-table": "0.0.2"
   }
 }
