@@ -1,4 +1,4 @@
-import { Canvas, TableView, DataModel } from './node_modules/jff-table/main.js'
+import { Canvas, TableView, DataModel } from 'jff-table'
 
 const columns = new Array(2000).fill(null).map((e, i) => ({ title: `Column ${i}`, mapper: a => `${a.a}${i}`, visible: true, width: 70 }))
 let index = 0
