@@ -19,6 +19,7 @@
   "homepage": "https://github.com/278204/278204.github.io#readme",
   "dependencies": {
     "esbuild": "^0.7.2",
-    "jff-table": "0.0.4"
+    "jff-table": "0.0.4",
+    "jff-canvas": "0.0.6"
   }
 }

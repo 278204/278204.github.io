@@ -4,19 +4,33 @@ const { build } = require('esbuild')
 const src = './src'
 const dest = './public'
 
-fs.readdirSync(src)
-    .filter(e => !e.endsWith('.js'))
-    .forEach(file => copyFile(src + '/' + file, dest + '/' + file))
+handleDir('')
+function handleDir(path) {
+  fs.readdirSync(src + path, { withFileTypes: true }).forEach(e => {
+    const filepath = path + '/' + e.name
+    if (e.isFile()) {
+      if (e.name.endsWith('.js')) {
+        esbuild(filepath)
+      } else {
+        copyFile(filepath)
+      }
+    } else {
+      handleDir(filepath)
+    }
+  })
+}
 
-build({
-  entryPoints: [src + '/jff-table.js'],
-  outfile: dest + '/jff-table.js',
-  minify: true,
-  bundle: true,
-  platform: 'browser',
-}).catch(() => process.exit(1))
+function esbuild(file) {
+  build({
+    entryPoints: [src + '/' + file],
+    outfile: dest + '/' + file,
+    minify: false,
+    bundle: true,
+    platform: 'browser',
+  }).catch(() => process.exit(1))
+}
 
-function copyFile(src, dest) {
-    var data = fs.readFileSync(src)
-    fs.writeFileSync(dest, data)
+function copyFile(file) {
+    var data = fs.readFileSync(src + '/' + file)
+    fs.writeFileSync(dest + '/' + file, data)
 }
